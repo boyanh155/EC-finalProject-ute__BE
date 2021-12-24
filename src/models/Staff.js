@@ -13,6 +13,9 @@ const StaffSchema = new Schema({
         type: String,
         required: true,
     },
+    role: {
+        type: String,
+    },
 });
 
 let Staff = mongoose.model("staffs", StaffSchema);

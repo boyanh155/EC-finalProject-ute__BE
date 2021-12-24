@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const tableSchema = require("./Table");
+const tableSchema = require("./Table").schema;
 
 const Schema = mongoose.Schema;
 
-let DaySchema = new Schema({
+const DaySchema = new Schema({
     date: Date,
     tables: [tableSchema],
 });

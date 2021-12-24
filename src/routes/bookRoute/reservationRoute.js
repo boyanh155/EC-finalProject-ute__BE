@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const mongoose = require("mongoose");
 //router
 const {
-    index,
+    reservation,
 } = require("../../app/controllers/bookController/reservationController");
 //[GET] /api/book/reserve
-router.use("/", index);
+router.post("/", reservation);
 
 module.exports = router;

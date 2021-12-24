@@ -9,6 +9,7 @@ const Schema = mongoose.Schema;
 //
 const TableSchema = new Schema({
     name: String,
+    capacity: String,
     isAvailable: Boolean,
     location: String,
     reservation: {
