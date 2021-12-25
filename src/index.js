@@ -5,9 +5,6 @@ require("dotenv").config();
 //cors
 const cors = require("cors");
 
-//env
-const PORT = process.env.PORT;
-
 // MongoDB
 const db = require("./config/db");
 db.connect();
@@ -26,5 +23,10 @@ app.use(cors());
 //Routes
 const route = require("./routes");
 route(app);
-//
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+//env
+const PORT = process.env.PORT || 5000;
+const HOST = "0.0.0.0";
+
+app.listen(process.env.PORT || 5000, HOST, () =>
+    console.log(`Server started on port ${PORT}`)
+);
