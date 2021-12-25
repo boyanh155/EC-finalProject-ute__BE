@@ -8,7 +8,7 @@
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "server": "nodemon ./src/index",
+        "start": "nodemon ./src/index",
         "create-data": "node src/data/generateFakeData.js"
     },
     "author": "",

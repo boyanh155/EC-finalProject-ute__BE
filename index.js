@@ -6,7 +6,7 @@ require("dotenv").config();
 const cors = require("cors");
 
 // MongoDB
-const db = require("./config/db");
+const db = require("./src/config/db");
 db.connect();
 
 //name
@@ -21,7 +21,7 @@ app.use(cors());
 // app.use(cors(corsOptions));
 
 //Routes
-const route = require("./routes");
+const route = require("./src/routes");
 route(app);
 //env
 const PORT = process.env.PORT || 5000;
