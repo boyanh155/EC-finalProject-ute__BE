@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const USER = process.env.MONGO_USER;
 const PASSWORD = process.env.MONGO_PWD;
+
 const connect = async() => {
     try {
         await mongoose.connect(

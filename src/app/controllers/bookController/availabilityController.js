@@ -4,7 +4,7 @@ const Day = require("../../../models/Day").model;
 
 class availabilityController {
     //[GET] api/auth/book/availability
-    //@route GET api/auth/book/availability
+    //@route GET api/book/availability
     //@desc availability routes access
     //@access Public
     available(req, res) {
@@ -17,7 +17,6 @@ class availabilityController {
             if (!err) {
                 if (data.length > 0) {
                     //Record found
-                    console.log();
                     res.status(200).send({
                         success: true,
                         data: data[0],
@@ -28,7 +27,6 @@ class availabilityController {
                     //date does exist, need to create it
                     //read data by allTable.js
                     const { allTables } = require("../../../data/allTable");
-                    console.log(allTables);
                     const day = new Day({
                         date: dateTime,
                         tables: allTables,

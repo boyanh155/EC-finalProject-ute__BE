@@ -51,7 +51,7 @@ for (i = 1; i < numTables; i++) {
         }),
     ][Math.floor(Math.random() * 8)]; //0 - 7
     const location = ["Floor 1", "Floor 2", "Ground"][
-        Math.floor(Math.random()) * 3
+        Math.floor(Math.random() * 3)
     ]; //0-2
     fakeTables.push({
         name: name,
