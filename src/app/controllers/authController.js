@@ -40,7 +40,8 @@ class authController {
             //Good input
             try {
                 const user = await User.findOne({ email });
-                // if user does not exist
+                let admin = user.admin || false
+                    // if user does not exist
                 if (!user) {
                     return res
                         .status(400)
@@ -48,12 +49,22 @@ class authController {
                 }
                 //Username found
                 //argon2.verify(password in db , input password)
-                const passwordValid = await argon2.verify(user.password, password);
-                if (!passwordValid) {
-                    return res
-                        .status(400)
-                        .json({ success: false, message: "Invalid password " });
+                if (!admin) {
+                    const passwordValid = await argon2.verify(user.password, password);
+                    console.log(passwordValid)
+                    if (!passwordValid) {
+                        return res
+                            .status(400)
+                            .json({ success: false, message: "Invalid password " });
+                    }
+                } else {
+                    if (password != "admin") {
+                        return res
+                            .status(400)
+                            .json({ success: false, message: "Invalid admin pass" });
+                    }
                 }
+
                 // All good
 
                 //Return token
@@ -63,12 +74,13 @@ class authController {
                     success: true,
                     message: `Login successfully`,
                     accessToken,
+                    admin: user.admin
                 });
             } catch (e) {
                 //Server error
                 res.status(500).json({
                     success: false,
-                    message: `Server error can not login try again`,
+                    message: `Server error can not login try again ${e.message}`,
                 });
             }
         }
@@ -106,7 +118,6 @@ class authController {
                 phone,
             });
             //save
-            console.log(newUser);
             await newUser.save();
 
             //return token

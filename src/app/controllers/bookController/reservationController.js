@@ -15,7 +15,8 @@ class reservationController {
     //@desc reserve table process
     //@access Public
     reservation(req, res) {
-        const { date, table, name, phone } = req.body;
+        const { date, table: tableR, name, phone } = req.body;
+        // console.log(req.body)
         //get tables in selected day
         Day.find({ date }, (err, data) => {
             if (!err) {
@@ -24,7 +25,7 @@ class reservationController {
                     //iterating table list
                     days.tables.forEach((table) => {
                         //get table
-                        if (table._id == table) {
+                        if (table._id == tableR) {
                             //correct table
                             //add reservation info when everything is good
                             table.reservation = new Reservation({
@@ -45,7 +46,7 @@ class reservationController {
                                 } else {
                                     res.status(400).send({
                                         success: false,
-                                        message: `Could not reserve : ${err.message}`,
+                                        message: `Could not reserve : ${err}`,
                                     });
                                 }
                             });
@@ -54,7 +55,7 @@ class reservationController {
                 } else {
                     res.status(400).send({
                         success: false,
-                        message: `Data found but nothing here : ${err.message}`,
+                        message: `Data found but nothing here : ${err}`,
                     });
                 }
             } else {

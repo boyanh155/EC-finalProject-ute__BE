@@ -30,6 +30,11 @@ const UserSchema = new Schema({
         default: Date.now,
         required: true,
     },
+    admin: {
+        type: Boolean,
+        default: false,
+        required: false,
+    }
 });
 
 let User = mongoose.model("users", UserSchema);
