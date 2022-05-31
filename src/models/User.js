@@ -34,7 +34,7 @@ const UserSchema = new Schema({
         type: Boolean,
         default: false,
         required: false,
-    }
+    },
 });
 
 let User = mongoose.model("users", UserSchema);
