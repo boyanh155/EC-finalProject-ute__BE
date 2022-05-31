@@ -7,19 +7,21 @@ class userController {
 
     loadUser(req, res) {
         try {
-            User.find({}, { password: 0, createAt: 0 }, (err, data) => {
-                if (!err) {
-                    res.send({
-                        success: true,
-                        users: data,
-                    });
-                } else {
-                    res.send({
-                        success: false,
-                        message: err.message,
-                    });
+            User.find({}, { password: 0, createAt: 0, _id: 0, __v: 0 },
+                (err, data) => {
+                    if (!err) {
+                        res.send({
+                            success: true,
+                            users: data,
+                        });
+                    } else {
+                        res.send({
+                            success: false,
+                            message: err.message,
+                        });
+                    }
                 }
-            });
+            );
         } catch (e) {
             res.send({
                 success: false,
@@ -28,4 +30,4 @@ class userController {
         }
     }
 }
-module.export = new userController();
+module.exports = new userController();
