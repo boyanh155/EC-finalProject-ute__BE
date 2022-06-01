@@ -9,7 +9,7 @@ class adminController {
     // Get all order
     order(req, res) {
             try {
-                Order.find({}, (err, data) => {
+                Order.find({}, { _id: 0 }, (err, data) => {
                     if (!err) {
                         res.send({
                             success: true,

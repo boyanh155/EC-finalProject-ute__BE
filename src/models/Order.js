@@ -20,7 +20,7 @@ const OrderSchema = new Schema({
         default: 00000,
     },
     user: {
-        type: UserSchema,
+        type: String,
     },
     payment: {
         type: String,
@@ -38,7 +38,7 @@ const OrderSchema = new Schema({
                 return arr.reduce((prev, cur) => {
                     return prev + cur.total;
                 }, 0);
-            } else return null;
+            } else return 0;
         },
     },
 });
